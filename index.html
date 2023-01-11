@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Quiz do Futuro</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <img src="logo.png" alt="Quiz do Futuro" srcset="" />
+    <div class="pergunta-1" onclick="checarResposta(event)">
+      <h1>PARA TRABALHAR COM PROGRAMAÇÃO EU PRECISO:</h1>
+
+      <button>Ser uma pessoa boa em matemática</button>
+      <button>Ter usado computadores desde criança e jogado video games</button>
+      <button class="opcao-certa">
+        Gostar de resolver problemas e trabalhar em equipe
+      </button>
+    </div>
+
+    <div class="pergunta-2 ocultar" onclick="checarResposta(event)">
+      <h1>PARA TRABALHAR COM PROGRAMAÇÃO EU PRECISO: 2</h1>
+
+      <button>Ser uma pessoa boa em matemática</button>
+      <button>Ter usado computadores desde criança e jogado video games</button>
+      <button class="opcao-certa">
+        Gostar de resolver problemas e trabalhar em equipe
+      </button>
+    </div>
+
+    <div class="pergunta-3 ocultar" onclick="checarResposta(event)">
+      <h1>PARA TRABALHAR COM PROGRAMAÇÃO EU PRECISO: 3</h1>
+
+      <button>Ser uma pessoa boa em matemática</button>
+      <button>Ter usado computadores desde criança e jogado video games</button>
+      <button class="opcao-certa">
+        Gostar de resolver problemas e trabalhar em equipe
+      </button>
+    </div>
+
+    <div class="pergunta-4 ocultar" onclick="checarResposta(event)">
+      <h1>PARA TRABALHAR COM PROGRAMAÇÃO EU PRECISO: 4</h1>
+
+      <button>Ser uma pessoa boa em matemática</button>
+      <button>Ter usado computadores desde criança e jogado video games</button>
+      <button class="opcao-certa">
+        Gostar de resolver problemas e trabalhar em equipe
+      </button>
+    </div>
+
+    <div class="pergunta-5 ocultar" onclick="checarResposta(event)">
+      <h1>PARA TRABALHAR COM PROGRAMAÇÃO EU PRECISO: 5</h1>
+
+      <button>Ser uma pessoa boa em matemática</button>
+      <button>Ter usado computadores desde criança e jogado video games</button>
+      <button class="opcao-certa">
+        Gostar de resolver problemas e trabalhar em equipe
+      </button>
+    </div>
+
+    <div class="resultado ocultar">
+      <h1>PARABÉNS!</h1>
+      <h1>VOCÊ ACERTOU <span class="acertos"></span> DE 5 PERGUNTAS</h1>
+      <button id="botaofinal" onclick="voltarParaFuturo()">
+        Voltar para o Inicio
+      </button>
+    </div>
+    <p><span class="pergunta-atual">1</span>/5</p>
+
+    <script>
+      const ultimaPergunta = 5;
+      let quantidadeDeAcertos = 0;
+      let perguntaAtual = 1;
+
+      function checarResposta(event) {
+        const tagDoElemento = event.target.tagName;
+        if (tagDoElemento !== "BUTTON") {
+          return;
+        }
+        const classeDoBotao = event.target.className;
+
+        const classeOpcaoCerta = "opcao-certa";
+
+        if (classeDoBotao === classeOpcaoCerta) {
+          quantidadeDeAcertos++;
+        }
+        const divPerguntaAtual = document.querySelector(
+          ".pergunta-" + perguntaAtual
+        );
+        divPerguntaAtual.classList.add("ocultar");
+
+        perguntaAtual++;
+
+        if (perguntaAtual > ultimaPergunta) {
+          const divResultado = document.querySelector(".resultado");
+          divResultado.classList.remove("ocultar");
+
+          const textoAcertos = document.querySelector(".acertos");
+          textoAcertos.innerText = quantidadeDeAcertos;
+
+          return;
+        }
+
+        const divProximaPergunta = document.querySelector(
+          ".pergunta-" + perguntaAtual
+        );
+        divProximaPergunta.classList.remove("ocultar");
+        const textoPerguntaAtual = document.querySelector(".pergunta-atual");
+        textoPerguntaAtual.innerText = perguntaAtual;
+      }
+
+      function voltarParaFuturo() {
+        quantidadeDeAcertos = 0;
+        perguntaAtual = 1;
+
+        const divProximaPergunta = document.querySelector(
+          ".pergunta-" + perguntaAtual
+        );
+        divProximaPergunta.classList.remove("ocultar");
+
+        const textoPerguntaAtual = document.querySelector(".pergunta-atual");
+        textoPerguntaAtual.innerText = perguntaAtual;
+
+        const divResultado = document.querySelector(".resultado");
+        divResultado.classList.add("ocultar");
+      }
+    </script>
+  </body>
+</html>
